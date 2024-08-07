@@ -1,19 +1,29 @@
+import { arrayMoveImmutable } from "array-move";
 import { useState } from "react";
+import SortableList, { SortableItem } from "react-easy-sort";
 
 export function App() {
   const [items, setItems] = useState(ITEMS);
+
+  const onSortEnd = (oldIndex: number, newIndex: number) => {
+    setItems((array) => arrayMoveImmutable(array, oldIndex, newIndex));
+  };
+
   return (
     <div className="container mx-auto px-24 py-8">
-      <div className="grid grid-cols-4 gap-4">
+      <SortableList
+        onSortEnd={onSortEnd}
+        className="grid grid-cols-4 gap-4"
+        draggedItemClassName="!cursor-grabbing"
+      >
         {items.map((item) => (
-          <div
-            key={item.id}
-            className="bg-white p-4 aspect-square grid place-items-center rounded-xl shadow-lg text-3xl font-bold"
-          >
-            {item.id}
-          </div>
+          <SortableItem key={item.id}>
+            <div className="bg-white p-4 aspect-square grid place-items-center rounded-xl shadow-lg text-3xl font-bold cursor-grab">
+              {item.name}
+            </div>
+          </SortableItem>
         ))}
-      </div>
+      </SortableList>
     </div>
   );
 }
