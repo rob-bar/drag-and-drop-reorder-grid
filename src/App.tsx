@@ -1,5 +1,42 @@
+import { useState } from "react";
+
 export function App() {
+  const [items, setItems] = useState(ITEMS);
   return (
-    <h1 className="text-3xl font-bold underline">My react app with tailwind</h1>
+    <div className="container mx-auto px-24 py-8">
+      <div className="grid grid-cols-4 gap-4">
+        {items.map((item) => (
+          <div
+            key={item.id}
+            className="bg-white p-4 aspect-square grid place-items-center rounded-xl shadow-lg text-3xl font-bold"
+          >
+            {item.id}
+          </div>
+        ))}
+      </div>
+    </div>
   );
 }
+
+const ITEMS = [
+  { id: 1, name: "item 1" },
+  { id: 2, name: "item 2" },
+  { id: 3, name: "item 3" },
+  { id: 4, name: "item 4" },
+  { id: 5, name: "item 5" },
+  { id: 6, name: "item 6" },
+  { id: 7, name: "item 7" },
+  { id: 8, name: "item 8" },
+  { id: 9, name: "item 9" },
+  { id: 10, name: "item 10" },
+  { id: 11, name: "item 11" },
+  { id: 12, name: "item 12" },
+  { id: 13, name: "item 13" },
+  { id: 14, name: "item 14" },
+  { id: 15, name: "item 15" },
+  { id: 16, name: "item 16" },
+  { id: 17, name: "item 17" },
+  { id: 18, name: "item 18" },
+  { id: 19, name: "item 19" },
+  { id: 20, name: "item 20" },
+];
